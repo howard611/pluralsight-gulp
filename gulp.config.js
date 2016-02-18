@@ -15,7 +15,9 @@ module.exports = function() {
       './*.js'
     ],
 
+    build: './build/',
     client: client,
+    fonts: './bower_components/font-awesome/fonts/**/*.*',
     index: client + 'index.html',
     js: [
       clientApp + '**/*.module.js',
