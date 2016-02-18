@@ -38,6 +38,7 @@ gulp.task('less-watcher', function() {
 });
 
 gulp.task('wiredep', function() {
+	log('Wire up the bower css js and our app js into the html');
 	var options = config.getWiredepDefaultOptions();
 	var wiredep = require('wiredep').stream; // You can only pass streams into gulp pipes.
 
@@ -45,6 +46,15 @@ gulp.task('wiredep', function() {
 			.src(config.index)
 			.pipe(wiredep(options))
 			.pipe($.inject(gulp.src(config.js)))
+			.pipe(gulp.dest(config.client)); // Where to pipe the finalised index.html
+});
+
+gulp.task('inject', ['styles', 'wiredep'], function() {
+	log('Wire up the app css into the html, and call wiredep');
+
+	return gulp
+			.src(config.index)
+			.pipe($.inject(gulp.src(config.css)))
 			.pipe(gulp.dest(config.client));
 });
 
