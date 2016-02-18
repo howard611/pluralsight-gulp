@@ -6,6 +6,9 @@ var $ = require('gulp-load-plugins')({lazy: 'true'});
 var del = require('del');
 var port = process.env.PORT || config.defaultPort;
 
+gulp.task('help', $.taskListing);
+gulp.task('default', ['help']);
+
 gulp.task('vet', function() {
 	log('Analyzing source with JSHint and JSCS');
 
