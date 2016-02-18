@@ -28,6 +28,8 @@ module.exports = function() {
     server: server,
     temp: temp,
 
+    browserReloadDelay: 1000,
+
 
     /**
     * Bower and NPM locations
