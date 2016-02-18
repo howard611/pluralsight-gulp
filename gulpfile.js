@@ -37,6 +37,17 @@ gulp.task('less-watcher', function() {
 	gulp.watch([config.less], ['styles']);
 });
 
+gulp.task('wiredep', function() {
+	var options = config.getWiredepDefaultOptions();
+	var wiredep = require('wiredep').stream; // You can only pass streams into gulp pipes.
+
+	return gulp
+			.src(config.index)
+			.pipe(wiredep(options))
+			.pipe($.inject(gulp.src(config.js)))
+			.pipe(gulp.dest(config.client));
+});
+
 ///////////////
 
 function clean(path, done) {
